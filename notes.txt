@@ -26,10 +26,6 @@ A Person has a/an:
 		Directive/Informative
 		Expressive/Attentive)
 
-Sources:
-	http://en.wikipedia.org/wiki/Myers-Briggs_Type_Indicator
-	http://en.wikipedia.org/wiki/Keirsey_Temperament_Sorter
-
 Extraversion - 49.3%
 Introversion - 50.7%
 Sensing - 73.3%
