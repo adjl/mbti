@@ -16,6 +16,7 @@ class PersonalityType:
 		self.strengths = self.set_strengths()
 		self.preferences = self.set_preferences()
 		self.cognitive_functions = self.set_cognitive_functions()
+		self.temperament = self.set_temperament()
 		self.personality_type = self.set_personality_type()
 
 	def __str__(self):
@@ -142,6 +143,12 @@ class PersonalityType:
 					cognitive_functions['Inf'] = 'Te'
 
 		return cognitive_functions
+
+	def set_temperament(self):
+		if self.preferences['Perceiving'] == 'S':
+			return self.preferences['Perceiving'] + self.preferences['Lifestyle']
+		else:
+			return self.preferences['Perceiving'] + self.preferences['Judging']
 
 	def set_personality_type(self):
 		personality_type = self.preferences['Attitude']
