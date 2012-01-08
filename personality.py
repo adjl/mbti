@@ -15,25 +15,11 @@ class PersonalityType:
 	def __init__(self):
 		self.strengths = self.set_strengths()
 		self.preferences = self.set_preferences()
+		self.cognitive_functions = self.set_cognitive_functions()
 		self.personality_type = self.set_personality_type()
 
-	def __str__(self, verbose=False):
-		output = self.personality_type
-
-		if verbose:
-			strength_names = {
-				'E': 'Extraversion', 'I': 'Introversion',
-				'S': 'Sensing',      'N': 'iNtuition',
-				'T': 'Thinking',     'F': 'Feeling',
-				'J': 'Judging',      'P': 'Perceiving'
-			}
-
-			strength_list = 'EISNTFJP'
-			for strength in strength_list:
-				output += '{0:12} ({1}): {2:3d}\n'.format(strength_names[strength], strength, self.strengths[strength])
-			output = output.rstrip('\n')
-
-		return output
+	def __str__(self):
+		return self.personality_type
 
 	def set_strengths(self):
 		import random
@@ -61,40 +47,106 @@ class PersonalityType:
 		return strengths
 
 	def set_preferences(self):
-		preferences = []
+		preferences = {}
 
 		if self.strengths['E'] > self.strengths['I']:
-			preferences.append('E')
+			preferences['Attitude'] = 'E'
 		elif self.strengths['E'] < self.strengths['I']:
-			preferences.append('I')
+			preferences['Attitude'] = 'I'
 		else:
-			preferences.append('X')
+			preferences['Attitude'] = 'X'
 
 		if self.strengths['S'] > self.strengths['N']:
-			preferences.append('S')
+			preferences['Perceiving'] = 'S'
 		elif self.strengths['S'] < self.strengths['N']:
-			preferences.append('N')
+			preferences['Perceiving'] = 'N'
 		else:
-			preferences.append('X')
+			preferences['Perceiving'] = 'X'
 
 		if self.strengths['T'] > self.strengths['F']:
-			preferences.append('T')
+			preferences['Judging'] = 'T'
 		elif self.strengths['T'] < self.strengths['F']:
-			preferences.append('F')
+			preferences['Judging'] = 'F'
 		else:
-			preferences.append('X')
+			preferences['Judging'] = 'X'
 
 		if self.strengths['J'] > self.strengths['P']:
-			preferences.append('J')
+			preferences['Lifestyle'] = 'J'
 		elif self.strengths['J'] < self.strengths['P']:
-			preferences.append('P')
+			preferences['Lifestyle'] = 'P'
 		else:
-			preferences.append('X')
+			preferences['Lifestyle'] = 'X'
 
 		return preferences
 
+	def set_cognitive_functions(self):
+		cognitive_functions = {}
+
+		if self.preferences['Attitude'] == 'E':
+			if self.preferences['Lifestyle'] == 'J':
+				if self.preferences['Judging'] == 'T':
+					cognitive_functions['Dom'] = 'Te'
+					cognitive_functions['Inf'] = 'Fi'
+				else:
+					cognitive_functions['Dom'] = 'Fe'
+					cognitive_functions['Inf'] = 'Ti'
+
+				if self.preferences['Perceiving'] == 'S':
+					cognitive_functions['Aux'] = 'Si'
+					cognitive_functions['Ter'] = 'Ne'
+				else:
+					cognitive_functions['Aux'] = 'Ni'
+					cognitive_functions['Ter'] = 'Se'
+			else:
+				if self.preferences['Perceiving'] == 'S':
+					cognitive_functions['Dom'] = 'Se'
+					cognitive_functions['Inf'] = 'Ni'
+				else:
+					cognitive_functions['Dom'] = 'Ne'
+					cognitive_functions['Inf'] = 'Si'
+
+				if self.preferences['Judging'] == 'T':
+					cognitive_functions['Aux'] = 'Ti'
+					cognitive_functions['Ter'] = 'Fe'
+				else:
+					cognitive_functions['Aux'] = 'Fi'
+					cognitive_functions['Ter'] = 'Te'
+		else:
+			if self.preferences['Lifestyle'] == 'J':
+				if self.preferences['Judging'] == 'T':
+					cognitive_functions['Aux'] = 'Te'
+					cognitive_functions['Ter'] = 'Fi'
+				else:
+					cognitive_functions['Aux'] = 'Fe'
+					cognitive_functions['Ter'] = 'Ti'
+
+				if self.preferences['Perceiving'] == 'S':
+					cognitive_functions['Dom'] = 'Si'
+					cognitive_functions['Inf'] = 'Ne'
+				else:
+					cognitive_functions['Dom'] = 'Ni'
+					cognitive_functions['Inf'] = 'Se'
+			else:
+				if self.preferences['Perceiving'] == 'S':
+					cognitive_functions['Aux'] = 'Se'
+					cognitive_functions['Ter'] = 'Ni'
+				else:
+					cognitive_functions['Aux'] = 'Ne'
+					cognitive_functions['Ter'] = 'Si'
+
+				if self.preferences['Judging'] == 'T':
+					cognitive_functions['Dom'] = 'Ti'
+					cognitive_functions['Inf'] = 'Fe'
+				else:
+					cognitive_functions['Dom'] = 'Fi'
+					cognitive_functions['Inf'] = 'Te'
+
+		return cognitive_functions
+
 	def set_personality_type(self):
-		personality_type = ''
-		for preference in self.preferences:
-			personality_type += preference
+		personality_type = self.preferences['Attitude']
+		personality_type += self.preferences['Perceiving']
+		personality_type += self.preferences['Judging']
+		personality_type += self.preferences['Lifestyle']
+
 		return personality_type
