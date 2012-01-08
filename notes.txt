@@ -1,0 +1,31 @@
+A Person has a/an:
+	Name
+		(FirstName
+		MiddleName
+		Surname
+		Nickname)
+	Gender
+	(Age)
+	(DateOfBirth
+		DayOfBirth
+		MonthOfBirth
+		YearOfBirth)
+	MyersBriggsPersonalityType
+		Extraversion/Introversion
+		Sensing/Intuition
+		Thinking/Feeling
+		Judging/Perceiving
+	MyersBriggsCognitiveFunctions (<- MyersBriggsPersonalityType)
+		Dominant
+		Auxiliary
+		Tertiary
+		Inferior
+	KeirseyTemperament (<- MyersBriggsPersonalityType)
+		Concrete/Abstract
+		Cooperative/Pragmatic
+		Directive/Informative
+		Expressive/Attentive
+
+Sources:
+	http://en.wikipedia.org/wiki/Myers-Briggs_Type_Indicator
+	http://en.wikipedia.org/wiki/Keirsey_Temperament_Sorter
