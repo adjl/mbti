@@ -4,7 +4,7 @@ A Person has a/an:
 		MiddleName
 		Surname
 		Nickname)
-	Gender
+	(Gender)
 	(Age)
 	(DateOfBirth
 		DayOfBirth
@@ -22,7 +22,7 @@ A Person has a/an:
 		Inferior
 	(Temperament, Role, RoleVariant
 		Concrete/Abstract
-		Cooperative/Pragmatic
+		Cooperative/Utilitarian
 		Directive/Informative
 		Expressive/Attentive)
 
