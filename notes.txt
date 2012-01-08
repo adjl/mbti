@@ -10,21 +10,21 @@ A Person has a/an:
 		DayOfBirth
 		MonthOfBirth
 		YearOfBirth)
-	MyersBriggsPersonalityType
+	PersonalityType
 		Extraversion/Introversion
 		Sensing/Intuition
 		Thinking/Feeling
 		Judging/Perceiving
-	MyersBriggsCognitiveFunctions (<- MyersBriggsPersonalityType)
+	CognitiveFunctions
 		Dominant
 		Auxiliary
 		Tertiary
 		Inferior
-	KeirseyTemperament (<- MyersBriggsPersonalityType)
+	(Temperament, Role, RoleVariant
 		Concrete/Abstract
 		Cooperative/Pragmatic
 		Directive/Informative
-		Expressive/Attentive
+		Expressive/Attentive)
 
 Sources:
 	http://en.wikipedia.org/wiki/Myers-Briggs_Type_Indicator
