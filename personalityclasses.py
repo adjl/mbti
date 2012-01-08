@@ -12,20 +12,20 @@ Author: Helena 'Adei' Josol <helena.josol@gmail.com>
 """
 
 class PersonalityType:
-	def __init__(self, attitude='X', perceiving='X', judging='X', lifestyle='X'):
-		if attitude == 'X':
-			self.attitude = get_attitude()
-		else:
-			self.attitude = attitude
-		if perceiving == 'X':
-			self.perceiving = get_perceiving()
-		else:
-			self.perceiving = perceiving
-		if judging == 'X':
-			self.judging = get_judging()
-		else:
-			self.judging = judging
-		if lifestyle == 'X':
-			self.lifestyle = get_lifestyle()
-		else:
-			self.lifestyle = lifestyle
+	def __init__(self):
+		self.extraversion, self.introversion = attitude()
+		self.sensing, self.intuition = perceiving()
+		self.thinking, self.feeling = judging()
+		self.judging, self.perceiving = lifestyle()
+
+	def attitude(self):
+		pass
+
+	def perceiving(self):
+		pass
+
+	def judging(self):
+		pass
+
+	def lifestyle(self):
+		pass
