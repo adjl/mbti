@@ -25,12 +25,3 @@ A Person has a/an:
 		Cooperative/Utilitarian
 		Directive/Informative
 		Expressive/Attentive)
-
-Extraversion - 49.3%
-Introversion - 50.7%
-Sensing - 73.3%
-Intuition - 26.7%
-Thinking - 40.2%
-Feeling - 59.8%
-Judging - 54.1%
-Perceiving- 45.9%
