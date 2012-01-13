@@ -87,6 +87,7 @@ class PersonalityType:
 			'Lifestyle': 3
 		}
 
+		personality_type = list(personality_type)
 		cognitive_functions = {}
 
 		if personality_type[preference['Attitude']] == 'E':
