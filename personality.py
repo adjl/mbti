@@ -13,8 +13,8 @@ Author: Helena 'Adei' Josol <helena.josol@gmail.com>
 
 class PersonalityType:
 	def __init__(self):
-		self.temperament = self.set_temperament()
-		self.personality_type = self.set_personality_type(self.temperament)
+		self.temperament, probability = self.set_temperament()
+		self.personality_type = self.set_personality_type(self.temperament, probability)
 		self.cognitive_functions = self.set_cognitive_functions(self.personality_type)
 		# self.strengths = self.set_strengths()
 
@@ -37,11 +37,11 @@ class PersonalityType:
 		boundary = 0
 		for temperament in probabilities.keys():
 			if boundary < probability <= boundary + probabilities[temperament]:
-				return temperament
+				return temperament, probabilities[temperament]
 			boundary += probabilities[temperament]
 
 
-	def set_personality_type(self, temperament):
+	def set_personality_type(self, temperament, temperament_probability):
 		import random
 
 		probabilities = {
@@ -74,9 +74,9 @@ class PersonalityType:
 		probability = round(random.uniform(0, 1), 3)
 		boundary = 0
 		for personality_type in probabilities[temperament].keys():
-			if boundary < probability <= boundary + probabilities[temperament][personality_type]:
+			if boundary < probability <= boundary + probabilities[temperament][personality_type] / temperament_probability:
 				return personality_type
-			boundary += probabilities[temperament][personality_type]
+			boundary += probabilities[temperament][personality_type] / temperament_probability
 
 
 	def set_cognitive_functions(self, personality_type):
@@ -119,7 +119,7 @@ class PersonalityType:
 					cognitive_functions['Ter'] = 'Te'
 		else:
 			if personality_type[preference['Lifestyle']] == 'J':
-				if self.preferences['Judging'] == 'T':
+				if personality_type[preference['Judging']] == 'T':
 					cognitive_functions['Aux'] = 'Te'
 					cognitive_functions['Ter'] = 'Fi'
 				else:
