@@ -12,11 +12,45 @@ Author: Helena 'Adei' Josol <helena.josol@gmail.com>
 """
 
 class PersonalityType:
+
+	temperament_probabilities = {
+		'SJ': 0.405,
+		'SP': 0.33,
+		'NF': 0.14,
+		'NT': 0.125
+	}
+
+	personality_type_probabilities = {
+		'SJ': {
+			'ESTJ': 0.13,
+			'ESFJ': 0.12,
+			'ISTJ': 0.085,
+			'ISFJ': 0.07
+		},
+		'SP': {
+			'ESTP': 0.1,
+			'ESFP': 0.11,
+			'ISTP': 0.06,
+			'ISFP': 0.06
+		},
+		'NF': {
+			'ENFJ': 0.04,
+			'ENFP': 0.07,
+			'INFJ': 0.01,
+			'INFP': 0.02
+		},
+		'NT': {
+			'ENTJ': 0.04,
+			'ENTP': 0.045,
+			'INTJ': 0.015,
+			'INTP': 0.025
+		}
+	}
+
 	def __init__(self):
-		self.temperament, probability = self.set_temperament()
-		self.personality_type = self.set_personality_type(self.temperament, probability)
+		self.temperament = self.set_temperament()
+		self.personality_type = self.set_personality_type(self.temperament)
 		self.cognitive_functions = self.set_cognitive_functions(self.personality_type)
-		# self.strengths = self.set_strengths()
 
 
 	def __str__(self):
@@ -26,57 +60,39 @@ class PersonalityType:
 	def set_temperament(self):
 		import random
 
-		probabilities = {
-			'SJ': 0.405,
-			'SP': 0.33,
-			'NF': 0.14,
-			'NT': 0.125
-		}
-
 		probability = round(random.uniform(0, 1), 3)
 		boundary = 0
-		for temperament in probabilities.keys():
-			if boundary < probability <= boundary + probabilities[temperament]:
-				return temperament, probabilities[temperament]
-			boundary += probabilities[temperament]
+
+		for temperament in temperament_probabilities.keys():
+			if boundary < probability <= boundary + temperament_probabilities[temperament]:
+				return temperament
+			boundary += temperament_probabilities[temperament]
 
 
-	def set_personality_type(self, temperament, temperament_probability):
+	def set_personality_type(self, temperament):
 		import random
 
-		probabilities = {
-			'SJ': {
-				'ESTJ': 0.13,
-				'ESFJ': 0.12,
-				'ISTJ': 0.085,
-				'ISFJ': 0.07
-			},
-			'SP': {
-				'ESTP': 0.1,
-				'ESFP': 0.11,
-				'ISTP': 0.06,
-				'ISFP': 0.06
-			},
-			'NF': {
-				'ENFJ': 0.04,
-				'ENFP': 0.07,
-				'INFJ': 0.01,
-				'INFP': 0.02
-			},
-			'NT': {
-				'ENTJ': 0.04,
-				'ENTP': 0.045,
-				'INTJ': 0.015,
-				'INTP': 0.025
-			}
-		}
+		probability = round(random.uniform(0, 1), 3)
+		boundary = 0
+
+		for personality_type in personality_type_probabilities[temperament].keys():
+			personality_type_probability = personality_type_probabilities[temperament][personality_type] / temperament_probabilities[temperament]
+			if boundary < probability <= boundary + personality_type_probability:
+				return personality_type
+			boundary += personality_type_probability
+
+
+	def set_personality_type_prototype(self):
+		import random
 
 		probability = round(random.uniform(0, 1), 3)
 		boundary = 0
-		for personality_type in probabilities[temperament].keys():
-			if boundary < probability <= boundary + probabilities[temperament][personality_type] / temperament_probability:
-				return personality_type
-			boundary += probabilities[temperament][personality_type] / temperament_probability
+
+		for temperament in personality_type_probabilities.keys():
+			for personality_type in personality_type_probabilities[temperament].keys():
+				if boundary < probability <= boundary + personality_type_probabilities[temperament][personality_type]:
+					return personality_type
+				boundary += personality_type_probabilities[temperament][personality_type]
 
 
 	def set_cognitive_functions(self, personality_type):
@@ -146,29 +162,3 @@ class PersonalityType:
 					cognitive_functions['Inf'] = 'Te'
 
 		return cognitive_functions
-
-
-	def set_strengths(self):
-		import random
-
-		probabilities = {
-			'EI': 49.3,
-			'SN': 73.3,
-			'TF': 40.2,
-			'JP': 54.1
-		}
-
-		strengths = {}
-
-		for dichotomy in probabilities.keys():
-			probability = round(random.uniform(0, 100), 1)
-			strength = random.randint(50, 100)
-
-			if probability <= probabilities[dichotomy]:
-				strengths[dichotomy[0]] = strength
-				strengths[dichotomy[1]] = 100 - strength
-			else:
-				strengths[dichotomy[0]] = 100 - strength
-				strengths[dichotomy[1]] = strength
-
-		return strengths
