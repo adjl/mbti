@@ -47,10 +47,13 @@ class PersonalityType:
 		}
 	}
 
-	def __init__(self):
-		self.temperament = self.set_temperament()
-		self.personality_type = self.set_personality_type(self.temperament)
-		self.cognitive_functions = self.set_cognitive_functions(self.personality_type)
+	def __init__(self, prototype=False):
+		if not prototype:
+			self.temperament = self.set_temperament()
+			self.personality_type = self.set_personality_type(self.temperament)
+		else:
+			self.personality_type = self.set_personality_type_prototype()
+		# self.cognitive_functions = self.set_cognitive_functions(self.personality_type)
 
 
 	def __str__(self):
@@ -60,23 +63,25 @@ class PersonalityType:
 	def set_temperament(self):
 		import random
 
-		probability = round(random.uniform(0, 1), 3)
-		boundary = 0
+		probability = boundary = 0
+		while probability <= 0:
+			probability = random.random()
 
-		for temperament in temperament_probabilities.keys():
-			if boundary < probability <= boundary + temperament_probabilities[temperament]:
+		for temperament in self.temperament_probabilities.keys():
+			if boundary < probability <= boundary + self.temperament_probabilities[temperament]:
 				return temperament
-			boundary += temperament_probabilities[temperament]
+			boundary += self.temperament_probabilities[temperament]
 
 
 	def set_personality_type(self, temperament):
 		import random
 
-		probability = round(random.uniform(0, 1), 3)
-		boundary = 0
+		probability = boundary = 0
+		while probability <= 0:
+			probability = random.random()
 
-		for personality_type in personality_type_probabilities[temperament].keys():
-			personality_type_probability = personality_type_probabilities[temperament][personality_type] / temperament_probabilities[temperament]
+		for personality_type in self.personality_type_probabilities[temperament].keys():
+			personality_type_probability = self.personality_type_probabilities[temperament][personality_type] / self.temperament_probabilities[temperament]
 			if boundary < probability <= boundary + personality_type_probability:
 				return personality_type
 			boundary += personality_type_probability
@@ -85,14 +90,15 @@ class PersonalityType:
 	def set_personality_type_prototype(self):
 		import random
 
-		probability = round(random.uniform(0, 1), 3)
-		boundary = 0
+		probability = boundary = 0
+		while probability <= 0:
+			probability = random.random()
 
-		for temperament in personality_type_probabilities.keys():
-			for personality_type in personality_type_probabilities[temperament].keys():
-				if boundary < probability <= boundary + personality_type_probabilities[temperament][personality_type]:
+		for temperament in self.personality_type_probabilities.keys():
+			for personality_type in self.personality_type_probabilities[temperament].keys():
+				if boundary < probability <= boundary + self.personality_type_probabilities[temperament][personality_type]:
 					return personality_type
-				boundary += personality_type_probabilities[temperament][personality_type]
+				boundary += self.personality_type_probabilities[temperament][personality_type]
 
 
 	def set_cognitive_functions(self, personality_type):
