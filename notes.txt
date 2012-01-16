@@ -25,3 +25,23 @@ A Person has a/an:
 		Cooperative/Utilitarian
 		Directive/Informative
 		Expressive/Attentive)
+
+notes for the test module (notes.txt):
+
+* consider making trials in 1000
+
+two outer dictionaries to hold values for comparison
+
+declare local dictionary
+repeat 100 times
+	create sample of 100 objects
+		calculate percentages for each personality type
+	add to local dictionary
+calculate average results
+store values in one of the outer dictionaries
+
+repeat above for second algorithm...
+
+compare first and second results to expected values
+	create table (for manual and visual comparison)
+	compute which results have the _smaller_ percentage difference
