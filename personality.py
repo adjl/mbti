@@ -4,14 +4,14 @@
 
 This module currently contains classes pertaining to the Myers-Briggs Type
 Indicator and Jungian Cognitive Functions. Currently adding functionality for
-the Keirsey Temperament Sorter. More models of personality type will be added in
-the future, namely the Enneagram of Personality, Big Five and SLOAN.
+the Keirsey Temperament Sorter. Another model of personality type will be added in
+the future, namely the Enneagram of Personality.
 
 Author: Helena 'Adei' Josol <helena.josol@gmail.com>
 
 """
 
-class PersonalityType:
+class Personality:
 
 	temperament_probabilities = {
 		'SJ': 0.405,
@@ -47,7 +47,7 @@ class PersonalityType:
 		}
 	}
 
-	def __init__(self):
+	def __init__(self, temperament='', personality_type=''):
 		self.temperament = self.set_temperament()
 		self.personality_type = self.set_personality_type(self.temperament)
 		self.cognitive_functions = self.set_cognitive_functions(self.personality_type)
@@ -61,8 +61,8 @@ class PersonalityType:
 		import random
 
 		probability = 0
-		while probability <= 0:				# probability can never be 0
-			probability = random.random()	# FIXME: use abs(1 - random.random()) to get results in range (0.0, 1.0]
+		while probability <= 0:						# probability can never be 0
+			probability = abs(1 - random.random())	# results in range (0.0, 1.0]
 		boundary = 0
 
 		# find which temperament range probability lies
@@ -77,7 +77,7 @@ class PersonalityType:
 
 		probability = 0
 		while probability <= 0:
-			probability = random.random()
+			probability = abs(1 - random.random())
 		boundary = 0
 
 		# find which personality type range probability lies
