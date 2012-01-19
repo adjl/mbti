@@ -4,7 +4,7 @@
 
 This module currently contains classes pertaining to the Myers-Briggs Type
 Indicator and Jungian Cognitive Functions. Currently adding functionality for
-the Kiersey Temperament Sorter. More models of personality type will be added in
+the Keirsey Temperament Sorter. More models of personality type will be added in
 the future, namely the Enneagram of Personality, Big Five and SLOAN.
 
 Author: Helena 'Adei' Josol <helena.josol@gmail.com>
@@ -47,13 +47,10 @@ class PersonalityType:
 		}
 	}
 
-	def __init__(self, prototype=False):
-		if not prototype:
-			self.temperament = self.set_temperament()
-			self.personality_type = self.set_personality_type(self.temperament)
-		else:
-			self.personality_type = self.set_personality_type_prototype()
-		# self.cognitive_functions = self.set_cognitive_functions(self.personality_type)
+	def __init__(self):
+		self.temperament = self.set_temperament()
+		self.personality_type = self.set_personality_type(self.temperament)
+		self.cognitive_functions = self.set_cognitive_functions(self.personality_type)
 
 
 	def __str__(self):
@@ -64,10 +61,11 @@ class PersonalityType:
 		import random
 
 		probability = 0
-		while probability <= 0:
-			probability = random.random()
+		while probability <= 0:				# probability can never be 0
+			probability = random.random()	# FIXME: use abs(1 - random.random()) to get results in range (0.0, 1.0]
 		boundary = 0
 
+		# find which temperament range probability lies
 		for temperament in self.temperament_probabilities.keys():
 			if boundary < probability <= boundary + self.temperament_probabilities[temperament]:
 				return temperament
@@ -82,6 +80,7 @@ class PersonalityType:
 			probability = random.random()
 		boundary = 0
 
+		# find which personality type range probability lies
 		for personality_type in self.personality_type_probabilities[temperament].keys():
 			personality_type_probability = self.personality_type_probabilities[temperament][personality_type] / self.temperament_probabilities[temperament]
 			if boundary < probability <= boundary + personality_type_probability:
