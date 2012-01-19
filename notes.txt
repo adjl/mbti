@@ -10,18 +10,26 @@ A Person has a/an:
 		DayOfBirth
 		MonthOfBirth
 		YearOfBirth)
+
+Personality
+	Extraversion/Introversion
+	Sensing/Intuition
+	Thinking/Feeling
+	Judging/Perceiving
+CognitiveFunctions
+	Dominant
+	Auxiliary
+	Tertiary
+	Inferior
+(Temperament, Role, RoleVariant
+	Concrete/Abstract
+	Cooperative/Utilitarian
+	Directive/Informative
+	Expressive/Attentive)
+
+Personality
+	Temperament
+		RoleVariant
 	PersonalityType
-		Extraversion/Introversion
-		Sensing/Intuition
-		Thinking/Feeling
-		Judging/Perceiving
+		Name
 	CognitiveFunctions
-		Dominant
-		Auxiliary
-		Tertiary
-		Inferior
-	(Temperament, Role, RoleVariant
-		Concrete/Abstract
-		Cooperative/Utilitarian
-		Directive/Informative
-		Expressive/Attentive)
