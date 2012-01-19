@@ -1,11 +1,11 @@
 # personality.py
 
-"""Module containing personality-related classes.
+"""Module containing a personality type class.
 
 This module currently contains classes pertaining to the Myers-Briggs Type
-Indicator. More models of personality type will be added in the future, namely
-the Keirsey Temperament Sorter and the Enneagram of Personality. Other possible
-ones are Jungian Psychological Types, Big Five and SLOAN.
+Indicator and Jungian Cognitive Functions. Currently adding functionality for
+the Kiersey Temperament Sorter. More models of personality type will be added in
+the future, namely the Enneagram of Personality, Big Five and SLOAN.
 
 Author: Helena 'Adei' Josol <helena.josol@gmail.com>
 
