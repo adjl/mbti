@@ -93,8 +93,8 @@ def output_results(result_a, result_b):
 
 
 def test(trials=100, sample_space=100):
-	from personality import PersonalityType
+	from personality import Personality
 
-	result_a = run_trial(PersonalityType, False, trials, sample_space)
-	result_b = run_trial(PersonalityType, True, trials, sample_space)
+	result_a = run_trial(Personality, False, trials, sample_space)
+	result_b = run_trial(Personality, True, trials, sample_space)
 	output_results(result_a, result_b)
