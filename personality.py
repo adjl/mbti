@@ -70,10 +70,26 @@ class Personality:
 	}
 
 	temperament_probabilities = {
-		'SJ': 0.405,
-		'SP': 0.33,
-		'NF': 0.14,
-		'NT': 0.125
+		'SJ': {
+			'Population': 0.405,
+			'Male': 0.375,
+			'Female': 0.435
+		},
+		'SP': {
+			'Population': 0.33,
+			'Male': 0.34,
+			'Female': 0.32
+		},
+		'NF': {
+			'Population': 0.14,
+			'Male': 0.105,
+			'Female': 0.175
+		},
+		'NT': {
+			'Population': 0.125,
+			'Male': 0.18,
+			'Female': 0.07
+		}
 	}
 
 	personality_type_probabilities = {
