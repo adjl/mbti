@@ -30,5 +30,5 @@ CognitiveFunctions
 Personality
 	Temperament
 	PersonalityType
-	Preferences
 	CognitiveFunctions
+	PreferencesStrengths
