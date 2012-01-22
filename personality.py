@@ -14,36 +14,36 @@ Author: Helena 'Adei' Josol <helena.josol@gmail.com>
 class Personality:
 
 	temperament_names = {
-		'SJ': ['Guardian', 'Protector'],
 		'SP': ['Artisan', 'Creator'],
+		'SJ': ['Guardian', 'Protector'],
 		'NF': ['Idealist', 'Visionary'],
 		'NT': ['Rational', 'Intellectual']
 	}
 
 	personality_type_names = {
-		'SJ': {
-			'ESTJ': ['Supervisor', 'Overseer', 'Guardian'],
-			'ESFJ': ['Provider', 'Supporter', 'Caregiver'],
-			'ISTJ': ['Inspector', 'Examiner', 'Duty Fulfiller'],
-			'ISFJ': ['Protector', 'Defender', 'Nurturer']
-		},
 		'SP': {
-			'ESTP': ['Promoter', 'Persuader', 'Doer'],
 			'ESFP': ['Performer', 'Entertainer', 'Performer'],
-			'ISTP': ['Crafter', 'Craftsman', 'Mechanic'],
-			'ISFP': ['Composer', 'Artist', 'Artist']
+			'ESTP': ['Promoter', 'Persuader', 'Doer'],
+			'ISFP': ['Composer', 'Artist', 'Artist'],
+			'ISTP': ['Crafter', 'Craftsman', 'Mechanic']
+		},
+		'SJ': {
+			'ESFJ': ['Provider', 'Supporter', 'Caregiver'],
+			'ESTJ': ['Supervisor', 'Overseer', 'Guardian'],
+			'ISFJ': ['Protector', 'Defender', 'Nurturer'],
+			'ISTJ': ['Inspector', 'Examiner', 'Duty Fulfiller']
 		},
 		'NF': {
-			'ENFJ': ['Teacher', 'Mentor', 'Giver'],
 			'ENFP': ['Champion', 'Advocate', 'Inspirer'],
-			'INFJ': ['Counselor', 'Confidant', 'Protector'],
-			'INFP': ['Healer', 'Dreamer', 'Idealist']
+			'ENFJ': ['Teacher', 'Mentor', 'Giver'],
+			'INFP': ['Healer', 'Dreamer', 'Idealist'],
+			'INFJ': ['Counselor', 'Confidant', 'Protector']
 		},
 		'NT': {
-			'ENTJ': ['Fieldmarshal', 'Chief', 'Executive'],
 			'ENTP': ['Inventor', 'Originator', 'Visionary'],
-			'INTJ': ['Mastermind', 'Strategist', 'Scientist'],
-			'INTP': ['Architect', 'Engineer', 'Thinker']
+			'ENTJ': ['Fieldmarshal', 'Chief', 'Executive'],
+			'INTP': ['Architect', 'Engineer', 'Thinker'],
+			'INTJ': ['Mastermind', 'Strategist', 'Scientist']
 		}
 	}
 
@@ -52,10 +52,10 @@ class Personality:
 		'I': ['Introversion', 'Introvert', 'Introverted'],
 		'S': ['Sensing', 'Sensor'],
 		'N': ['iNtuition', 'iNtuitor', 'iNtuitive'],
-		'T': ['Thinking', 'Thinker'],
 		'F': ['Feeling', 'Feeler'],
-		'J': ['Judging', 'Judger'],
-		'P': ['Perceiving', 'Perceiver']
+		'T': ['Thinking', 'Thinker'],
+		'P': ['Perceiving', 'Perceiver'],
+		'J': ['Judging', 'Judger']
 	}
 
 	cognitive_function_names = {
@@ -63,59 +63,43 @@ class Personality:
 		'Si': 'Introverted Sensing',
 		'Ne': 'Extraverted iNtuition',
 		'Ni': 'Introverted iNtuition',
-		'Te': 'Extraverted Thinking',
-		'Ti': 'Introverted Thinking',
 		'Fe': 'Extraverted Feeling',
-		'Fi': 'Introverted Feeling'
+		'Fi': 'Introverted Feeling',
+		'Te': 'Extraverted Thinking',
+		'Ti': 'Introverted Thinking'
 	}
 
 	temperament_probabilities = {
-		'SJ': {
-			'Population': 0.405,
-			'Male': 0.375,
-			'Female': 0.435
-		},
-		'SP': {
-			'Population': 0.33,
-			'Male': 0.34,
-			'Female': 0.32
-		},
-		'NF': {
-			'Population': 0.14,
-			'Male': 0.105,
-			'Female': 0.175
-		},
-		'NT': {
-			'Population': 0.125,
-			'Male': 0.18,
-			'Female': 0.07
-		}
+		'SP': {'All': 0.33, 'Male': 0.34, 'Female': 0.32},
+		'SJ': {'All': 0.405, 'Male': 0.375, 'Female': 0.435},
+		'NF': {'All': 0.14, 'Male': 0.105, 'Female': 0.175},
+		'NT': {'All': 0.125, 'Male': 0.18, 'Female': 0.07}
 	}
 
 	personality_type_probabilities = {
-		'SJ': {
-			'ESTJ': 0.13,
-			'ESFJ': 0.12,
-			'ISTJ': 0.085,
-			'ISFJ': 0.07
-		},
 		'SP': {
-			'ESTP': 0.1,
-			'ESFP': 0.11,
-			'ISTP': 0.06,
-			'ISFP': 0.06
+			'ESFP': {'All': 0.11, 'Male': 0.08, 'Female': 0.14},
+			'ESTP': {'All': 0.1, 'Male': 0.125, 'Female': 0.075},
+			'ISFP': {'All': 0.06, 'Male': 0.05, 'Female': 0.07},
+			'ISTP': {'All': 0.06, 'Male': 0.085, 'Female': 0.035}
+		},
+		'SJ': {
+			'ESFJ': {'All': 0.12, 'Male': 0.07, 'Female': 0.17},
+			'ESTJ': {'All': 0.13, 'Male': 0.16, 'Female': 0.1},
+			'ISFJ': {'All': 0.07, 'Male': 0.04, 'Female': 0.1},
+			'ISTJ': {'All': 0.085, 'Male': 0.105, 'Female': 0.065}
 		},
 		'NF': {
-			'ENFJ': 0.04,
-			'ENFP': 0.07,
-			'INFJ': 0.01,
-			'INFP': 0.02
+			'ENFP': {'All': 0.07, 'Male': 0.06, 'Female': 0.08},
+			'ENFJ': {'All': 0.04, 'Male': 0.025, 'Female': 0.055},
+			'INFP': {'All': 0.02, 'Male': 0.015, 'Female': 0.025},
+			'INFJ': {'All': 0.01, 'Male': 0.005, 'Female': 0.015}
 		},
 		'NT': {
-			'ENTJ': 0.04,
-			'ENTP': 0.045,
-			'INTJ': 0.015,
-			'INTP': 0.025
+			'ENTP': {'All': 0.045, 'Male': 0.06, 'Female': 0.03},
+			'ENTJ': {'All': 0.04, 'Male': 0.055, 'Female': 0.025},
+			'INTP': {'All': 0.025, 'Male': 0.04, 'Female': 0.01},
+			'INTJ': {'All': 0.015, 'Male': 0.025, 'Female': 0.005}
 		}
 	}
 
@@ -173,58 +157,58 @@ class Personality:
 		cognitive_functions = {}
 
 		if personality_type[preference['Attitude']] == 'E':
-			if personality_type[preference['Lifestyle']] == 'J':
-				if personality_type[preference['Judging']] == 'T':
-					cognitive_functions['Dominant'] = 'Te'
-					cognitive_functions['Inferior'] = 'Fi'
-				else:
-					cognitive_functions['Dominant'] = 'Fe'
-					cognitive_functions['Inferior'] = 'Ti'
-				if personality_type[preference['Perceiving']] == 'S':
-					cognitive_functions['Auxiliary'] = 'Si'
-					cognitive_functions['Tertiary'] = 'Ne'
-				else:
-					cognitive_functions['Auxiliary'] = 'Ni'
-					cognitive_functions['Tertiary'] = 'Se'
-			else:
+			if personality_type[preference['Lifestyle']] == 'P':
 				if personality_type[preference['Perceiving']] == 'S':
 					cognitive_functions['Dominant'] = 'Se'
 					cognitive_functions['Inferior'] = 'Ni'
 				else:
 					cognitive_functions['Dominant'] = 'Ne'
 					cognitive_functions['Inferior'] = 'Si'
-				if personality_type[preference['Judging']] == 'T':
-					cognitive_functions['Auxiliary'] = 'Ti'
-					cognitive_functions['Tertiary'] = 'Fe'
-				else:
+				if personality_type[preference['Judging']] == 'F':
 					cognitive_functions['Auxiliary'] = 'Fi'
 					cognitive_functions['Tertiary'] = 'Te'
-		else:
-			if personality_type[preference['Lifestyle']] == 'J':
-				if personality_type[preference['Judging']] == 'T':
-					cognitive_functions['Auxiliary'] = 'Te'
-					cognitive_functions['Tertiary'] = 'Fi'
 				else:
-					cognitive_functions['Auxiliary'] = 'Fe'
-					cognitive_functions['Tertiary'] = 'Ti'
-				if personality_type[preference['Perceiving']] == 'S':
-					cognitive_functions['Dominant'] = 'Si'
-					cognitive_functions['Inferior'] = 'Ne'
-				else:
-					cognitive_functions['Dominant'] = 'Ni'
-					cognitive_functions['Inferior'] = 'Se'
+					cognitive_functions['Auxiliary'] = 'Ti'
+					cognitive_functions['Tertiary'] = 'Fe'
 			else:
+				if personality_type[preference['Judging']] == 'F':
+					cognitive_functions['Dominant'] = 'Fe'
+					cognitive_functions['Inferior'] = 'Ti'
+				else:
+					cognitive_functions['Dominant'] = 'Te'
+					cognitive_functions['Inferior'] = 'Fi'
+				if personality_type[preference['Perceiving']] == 'S':
+					cognitive_functions['Auxiliary'] = 'Si'
+					cognitive_functions['Tertiary'] = 'Ne'
+				else:
+					cognitive_functions['Auxiliary'] = 'Ni'
+					cognitive_functions['Tertiary'] = 'Se'
+		else:
+			if personality_type[preference['Lifestyle']] == 'P':
 				if personality_type[preference['Perceiving']] == 'S':
 					cognitive_functions['Auxiliary'] = 'Se'
 					cognitive_functions['Tertiary'] = 'Ni'
 				else:
 					cognitive_functions['Auxiliary'] = 'Ne'
 					cognitive_functions['Tertiary'] = 'Si'
-				if personality_type[preference['Judging']] == 'T':
-					cognitive_functions['Dominant'] = 'Ti'
-					cognitive_functions['Inferior'] = 'Fe'
-				else:
+				if personality_type[preference['Judging']] == 'F':
 					cognitive_functions['Dominant'] = 'Fi'
 					cognitive_functions['Inferior'] = 'Te'
+				else:
+					cognitive_functions['Dominant'] = 'Ti'
+					cognitive_functions['Inferior'] = 'Fe'
+			else:
+				if personality_type[preference['Judging']] == 'F':
+					cognitive_functions['Auxiliary'] = 'Fe'
+					cognitive_functions['Tertiary'] = 'Ti'
+				else:
+					cognitive_functions['Auxiliary'] = 'Te'
+					cognitive_functions['Tertiary'] = 'Fi'
+				if personality_type[preference['Perceiving']] == 'S':
+					cognitive_functions['Dominant'] = 'Si'
+					cognitive_functions['Inferior'] = 'Ne'
+				else:
+					cognitive_functions['Dominant'] = 'Ni'
+					cognitive_functions['Inferior'] = 'Se'
 
 		return cognitive_functions
