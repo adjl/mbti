@@ -110,8 +110,8 @@ class Personality:
 	def __init__(self, gender='All'):
 		self._temperament = self._set_temperament(gender)
 		self._personality_type = self._set_personality_type(self._temperament, gender)
-		self._cognitive_functions = self._set_cognitive_functions(self._personality_type)
 		self._preference_strengths = self._set_preference_strengths(self._personality_type)
+		self._cognitive_functions = self._set_cognitive_functions(self._personality_type)
 
 
 	def __str__(self):
@@ -147,6 +147,18 @@ class Personality:
 			if boundary < probability <= boundary + personality_type_probability:
 				return personality_type
 			boundary += personality_type_probability
+
+
+	def _set_preference_strengths(self, personality_type):
+		import random
+
+		personality_type = list(personality_type)
+		preference_strengths = {}
+
+		for preference in personality_type:
+			preference_strengths[preference] = random.randint(PREF_STR_LOWER_BOUNDARY, PREF_STR_UPPER_BOUNDARY)
+
+		return preference_strengths
 
 
 	def _set_cognitive_functions(self, personality_type):
@@ -218,18 +230,6 @@ class Personality:
 		return cognitive_functions
 
 
-	def _set_preference_strengths(self, personality_type):
-		import random
-
-		personality_type = list(personality_type)
-		preference_strengths = {}
-
-		for preference in personality_type:
-			preference_strengths[preference] = random.randint(PREF_STR_LOWER_BOUNDARY, PREF_STR_UPPER_BOUNDARY)
-
-		return preference_strengths
-
-
 	def get_temperament(self):
 		return self._temperament
 
@@ -238,9 +238,9 @@ class Personality:
 		return self._personality_type
 
 
-	def get_cognitive_functions(self):
-		return self._cognitive_functions
-
-
 	def get_preference_strengths(self):
 		return self._preference_strengths
+
+
+	def get_cognitive_functions(self):
+		return self._cognitive_functions
