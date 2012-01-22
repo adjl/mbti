@@ -11,6 +11,9 @@ Author: Helena 'Adei' Josol <helena.josol@gmail.com>
 
 """
 
+PREF_STR_UPPER_BOUNDARY = 100
+PREF_STR_LOWER_BOUNDARY = PREF_STR_UPPER_BOUNDARY / 2 + 1
+
 class Personality:
 
 	_temperament_names = {
@@ -103,18 +106,12 @@ class Personality:
 		}
 	}
 
-	_preference = {
-		'Attitude': 0,
-		'Perceiving': 1,
-		'Judging': 2,
-		'Lifestyle': 3
-	}
-
 
 	def __init__(self, gender='All'):
 		self._temperament = self._set_temperament(gender)
 		self._personality_type = self._set_personality_type(self._temperament, gender)
 		self._cognitive_functions = self._set_cognitive_functions(self._personality_type)
+		self._preference_strengths = self._set_preference_strengths(self._personality_type)
 
 
 	def __str__(self):
@@ -153,58 +150,65 @@ class Personality:
 
 
 	def _set_cognitive_functions(self, personality_type):
+		preference = {
+			'Attitude': 0,
+			'Perceiving': 1,
+			'Judging': 2,
+			'Lifestyle': 3
+		}
+
 		personality_type = list(personality_type)
 		cognitive_functions = {}
 
-		if personality_type[self._preference['Attitude']] == 'E':
-			if personality_type[self._preference['Lifestyle']] == 'P':
-				if personality_type[self._preference['Perceiving']] == 'S':
+		if personality_type[preference['Attitude']] == 'E':
+			if personality_type[preference['Lifestyle']] == 'P':
+				if personality_type[preference['Perceiving']] == 'S':
 					cognitive_functions['Dominant'] = 'Se'
 					cognitive_functions['Inferior'] = 'Ni'
 				else:
 					cognitive_functions['Dominant'] = 'Ne'
 					cognitive_functions['Inferior'] = 'Si'
-				if personality_type[self._preference['Judging']] == 'F':
+				if personality_type[preference['Judging']] == 'F':
 					cognitive_functions['Auxiliary'] = 'Fi'
 					cognitive_functions['Tertiary'] = 'Te'
 				else:
 					cognitive_functions['Auxiliary'] = 'Ti'
 					cognitive_functions['Tertiary'] = 'Fe'
 			else:
-				if personality_type[self._preference['Judging']] == 'F':
+				if personality_type[preference['Judging']] == 'F':
 					cognitive_functions['Dominant'] = 'Fe'
 					cognitive_functions['Inferior'] = 'Ti'
 				else:
 					cognitive_functions['Dominant'] = 'Te'
 					cognitive_functions['Inferior'] = 'Fi'
-				if personality_type[self._preference['Perceiving']] == 'S':
+				if personality_type[preference['Perceiving']] == 'S':
 					cognitive_functions['Auxiliary'] = 'Si'
 					cognitive_functions['Tertiary'] = 'Ne'
 				else:
 					cognitive_functions['Auxiliary'] = 'Ni'
 					cognitive_functions['Tertiary'] = 'Se'
 		else:
-			if personality_type[self._preference['Lifestyle']] == 'P':
-				if personality_type[self._preference['Perceiving']] == 'S':
+			if personality_type[preference['Lifestyle']] == 'P':
+				if personality_type[preference['Perceiving']] == 'S':
 					cognitive_functions['Auxiliary'] = 'Se'
 					cognitive_functions['Tertiary'] = 'Ni'
 				else:
 					cognitive_functions['Auxiliary'] = 'Ne'
 					cognitive_functions['Tertiary'] = 'Si'
-				if personality_type[self._preference['Judging']] == 'F':
+				if personality_type[preference['Judging']] == 'F':
 					cognitive_functions['Dominant'] = 'Fi'
 					cognitive_functions['Inferior'] = 'Te'
 				else:
 					cognitive_functions['Dominant'] = 'Ti'
 					cognitive_functions['Inferior'] = 'Fe'
 			else:
-				if personality_type[self._preference['Judging']] == 'F':
+				if personality_type[preference['Judging']] == 'F':
 					cognitive_functions['Auxiliary'] = 'Fe'
 					cognitive_functions['Tertiary'] = 'Ti'
 				else:
 					cognitive_functions['Auxiliary'] = 'Te'
 					cognitive_functions['Tertiary'] = 'Fi'
-				if personality_type[self._preference['Perceiving']] == 'S':
+				if personality_type[preference['Perceiving']] == 'S':
 					cognitive_functions['Dominant'] = 'Si'
 					cognitive_functions['Inferior'] = 'Ne'
 				else:
@@ -212,3 +216,31 @@ class Personality:
 					cognitive_functions['Inferior'] = 'Se'
 
 		return cognitive_functions
+
+
+	def _set_preference_strengths(self, personality_type):
+		import random
+
+		personality_type = list(personality_type)
+		preference_strengths = {}
+
+		for preference in personality_type:
+			preference_strengths[preference] = random.randint(PREF_STR_LOWER_BOUNDARY, PREF_STR_UPPER_BOUNDARY)
+
+		return preference_strengths
+
+
+	def get_temperament(self):
+		return self._temperament
+
+
+	def get_personality_type(self):
+		return self._personality_type
+
+
+	def get_cognitive_functions(self):
+		return self._cognitive_functions
+
+
+	def get_preference_strengths(self):
+		return self._preference_strengths
