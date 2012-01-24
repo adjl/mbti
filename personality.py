@@ -1,5 +1,6 @@
 # personality.py
 
+
 """Module containing a personality type class.
 
 This module currently contains classes pertaining to the Myers-Briggs Type
@@ -11,75 +12,21 @@ Author: Helena 'Adei' Josol <helena.josol@gmail.com>
 
 """
 
-PREF_STR_UPPER_BOUNDARY = 100
-PREF_STR_LOWER_BOUNDARY = PREF_STR_UPPER_BOUNDARY / 2 + 1
+
+PREF_STR_MAX = 100
+
 
 class Personality:
 
-	_temperament_names = {
-		'SP': ['Artisan', 'Creator'],
-		'SJ': ['Guardian', 'Protector'],
-		'NF': ['Idealist', 'Visionary'],
-		'NT': ['Rational', 'Intellectual']
-	}
 
-	_personality_type_names = {
-		'SP': {
-			'ESFP': ['Performer', 'Entertainer', 'Performer'],
-			'ESTP': ['Promoter', 'Persuader', 'Doer'],
-			'ISFP': ['Composer', 'Artist', 'Artist'],
-			'ISTP': ['Crafter', 'Craftsman', 'Mechanic']
-		},
-		'SJ': {
-			'ESFJ': ['Provider', 'Supporter', 'Caregiver'],
-			'ESTJ': ['Supervisor', 'Overseer', 'Guardian'],
-			'ISFJ': ['Protector', 'Defender', 'Nurturer'],
-			'ISTJ': ['Inspector', 'Examiner', 'Duty Fulfiller']
-		},
-		'NF': {
-			'ENFP': ['Champion', 'Advocate', 'Inspirer'],
-			'ENFJ': ['Teacher', 'Mentor', 'Giver'],
-			'INFP': ['Healer', 'Dreamer', 'Idealist'],
-			'INFJ': ['Counselor', 'Confidant', 'Protector']
-		},
-		'NT': {
-			'ENTP': ['Inventor', 'Originator', 'Visionary'],
-			'ENTJ': ['Fieldmarshal', 'Chief', 'Executive'],
-			'INTP': ['Architect', 'Engineer', 'Thinker'],
-			'INTJ': ['Mastermind', 'Strategist', 'Scientist']
-		}
-	}
-
-	_preference_names = {
-		'E': ['Extraversion', 'Extravert', 'Extraverted'],
-		'I': ['Introversion', 'Introvert', 'Introverted'],
-		'S': ['Sensing', 'Sensor'],
-		'N': ['iNtuition', 'iNtuitor', 'iNtuitive'],
-		'F': ['Feeling', 'Feeler'],
-		'T': ['Thinking', 'Thinker'],
-		'P': ['Perceiving', 'Perceiver'],
-		'J': ['Judging', 'Judger']
-	}
-
-	_cognitive_function_names = {
-		'Se': 'Extraverted Sensing',
-		'Si': 'Introverted Sensing',
-		'Ne': 'Extraverted iNtuition',
-		'Ni': 'Introverted iNtuition',
-		'Fe': 'Extraverted Feeling',
-		'Fi': 'Introverted Feeling',
-		'Te': 'Extraverted Thinking',
-		'Ti': 'Introverted Thinking'
-	}
-
-	_temperament_probabilities = {
+	temperament_probabilities = {
 		'SP': {'All': 0.33, 'Male': 0.34, 'Female': 0.32},
 		'SJ': {'All': 0.405, 'Male': 0.375, 'Female': 0.435},
 		'NF': {'All': 0.14, 'Male': 0.105, 'Female': 0.175},
 		'NT': {'All': 0.125, 'Male': 0.18, 'Female': 0.07}
 	}
 
-	_personality_type_probabilities = {
+	personality_type_probabilities = {
 		'SP': {
 			'ESFP': {'All': 0.11, 'Male': 0.08, 'Female': 0.14},
 			'ESTP': {'All': 0.1, 'Male': 0.125, 'Female': 0.075},
@@ -108,17 +55,17 @@ class Personality:
 
 
 	def __init__(self, gender='All'):
-		self._temperament = self._set_temperament(gender)
-		self._personality_type = self._set_personality_type(self._temperament, gender)
-		self._preference_strengths = self._set_preference_strengths(self._personality_type)
-		self._cognitive_functions = self._set_cognitive_functions(self._personality_type)
+		self.temperament = self.set_temperament(gender)
+		self.personality_type = self.set_personality_type(self.temperament, gender)
+		self.preference_strengths = self.set_preference_strengths(self.personality_type)
+		self.cognitive_functions = self.set_cognitive_functions(self.personality_type)
 
 
 	def __str__(self):
 		return self._personality_type
 
 
-	def _set_temperament(self, gender):
+	def set_temperament(self, gender):
 		import random
 
 		probability = 0
@@ -127,10 +74,10 @@ class Personality:
 		boundary = 0
 
 		# find which temperament range probability lies
-		for temperament in self._temperament_probabilities.keys():
-			if boundary < probability <= boundary + self._temperament_probabilities[temperament][gender]:
+		for temperament in self.temperament_probabilities.keys():
+			if boundary < probability <= boundary + self.temperament_probabilities[temperament][gender]:
 				return temperament
-			boundary += self._temperament_probabilities[temperament][gender]
+			boundary += self.temperament_probabilities[temperament][gender]
 
 
 	def _set_personality_type(self, temperament, gender):
@@ -142,26 +89,26 @@ class Personality:
 		boundary = 0
 
 		# find which personality type range probability lies
-		for personality_type in self._personality_type_probabilities[temperament].keys():
-			personality_type_probability = self._personality_type_probabilities[temperament][personality_type][gender] / self._temperament_probabilities[temperament][gender]
+		for personality_type in self.personality_type_probabilities[temperament].keys():
+			personality_type_probability = self.personality_type_probabilities[temperament][personality_type][gender] / self.temperament_probabilities[temperament][gender]
 			if boundary < probability <= boundary + personality_type_probability:
 				return personality_type
 			boundary += personality_type_probability
 
 
-	def _set_preference_strengths(self, personality_type):
+	def set_preference_strengths(self, personality_type):
 		import random
 
 		personality_type = list(personality_type)
 		preference_strengths = {}
 
 		for preference in personality_type:
-			preference_strengths[preference] = random.randint(PREF_STR_LOWER_BOUNDARY, PREF_STR_UPPER_BOUNDARY)
+			preference_strengths[preference] = random.randint(PREF_STR_MAX / 2 + 1, PREF_STR_MAX)
 
 		return preference_strengths
 
 
-	def _set_cognitive_functions(self, personality_type):
+	def set_cognitive_functions(self, personality_type):
 		preference = {
 			'Attitude': 0,
 			'Perceiving': 1,
@@ -228,19 +175,3 @@ class Personality:
 					cognitive_functions['Inferior'] = 'Se'
 
 		return cognitive_functions
-
-
-	def get_temperament(self):
-		return self._temperament
-
-
-	def get_personality_type(self):
-		return self._personality_type
-
-
-	def get_preference_strengths(self):
-		return self._preference_strengths
-
-
-	def get_cognitive_functions(self):
-		return self._cognitive_functions
