@@ -1,6 +1,5 @@
 # personality.py
 
-
 """Module containing a personality type class.
 
 This module currently contains classes pertaining to the Myers-Briggs Type
@@ -12,12 +11,9 @@ Author: Helena 'Adei' Josol <helena.josol@gmail.com>
 
 """
 
-
 PREF_STR_MAX = 100
 
-
 class Personality:
-
 
 	temperament_probabilities = {
 		'SP': {'All': 0.33, 'Male': 0.34, 'Female': 0.32},
@@ -62,7 +58,7 @@ class Personality:
 
 
 	def __str__(self):
-		return self._personality_type
+		return self.personality_type
 
 
 	def set_temperament(self, gender):
@@ -80,7 +76,7 @@ class Personality:
 			boundary += self.temperament_probabilities[temperament][gender]
 
 
-	def _set_personality_type(self, temperament, gender):
+	def set_personality_type(self, temperament, gender):
 		import random
 
 		probability = 0
