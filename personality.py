@@ -7,7 +7,7 @@ Indicator and Jungian Cognitive Functions. Currently adding functionality for
 the Keirsey Temperament Sorter. Another model of personality type will be added in
 the future, namely the Enneagram of Personality.
 
-Author: Helena Josol
+Author: Adei Josol
 
 """
 
